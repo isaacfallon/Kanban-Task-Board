@@ -35,7 +35,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form>
+            <form id="project-form">
               <div class="form-group">
                 <label for="taskTitle">Task Title</label>
                 <input class="form-control" type="text" id="taskTitle"></textarea>
@@ -51,7 +51,7 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Add task</button>          
+            <button type="submit" form="project-form" class="btn btn-primary" data-bs-dismiss="modal">Add task</button>          
           </div>
         </div>
       </div>
