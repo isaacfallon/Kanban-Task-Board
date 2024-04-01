@@ -14,3 +14,7 @@ body {
 .task-card:hover {
   cursor: grab;
 }
+
+::backdrop {
+  opacity: 0.5;
+}
