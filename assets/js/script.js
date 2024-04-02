@@ -54,6 +54,23 @@ function createTaskCard(task) {
   taskCard.append(cardHeader);
   taskCard.append(cardBody);
 
+  if (task.dueDate && task.status !== 'done') {
+    const now = dayjs();
+    const taskDueDate = dayjs(task.dueDate, 'DD/MM/YYYY');
+
+    let sevenDaysAway = now.add(7, 'day');
+
+    if (now.isSame(taskDueDate, 'day')) {
+      taskCard.addClass('bg-warning text-white');
+    } else if (now.isAfter(taskDueDate, 'day')) {
+      taskCard.addClass('bg-danger text-white');
+      cardDeleteButton.addClass('border-light');
+    }
+
+  return taskCard;
+
+}
+
   return taskCard;
 
 }
@@ -71,17 +88,30 @@ function renderTaskList() {
   const doneList = $('#done-cards');
   doneList.empty();
 
-  for (let task of tasks) {
-    const newCard = createTaskCard(task);
-    if (task.status === 'to-do') {
+  for (let i of tasks) {
+    const newCard = createTaskCard(i);
+    if (i.status === 'to-do') {
       todoList.append(newCard);
-    } else if (task.status === 'in-progress') {
+    } else if (i.status === 'in-progress') {
       inProgressList.append(newCard);
     } else {
       doneList.append(newCard);
     }
   }
+  $(".draggable").draggable({
+    opacity: 0.5,
+    zIndex: 100,
 
+    helper: function(e) {
+      const original = $(e.target).hasClass('ui-draggable')
+        ? $(e.target)
+        : $(e.target).closest('.ui-draggable');
+
+        return original.clone().css({
+          width: original.outerWidth(),
+        });
+    }, 
+  });
 }
 
 // Todo: create a function to handle adding a new task
@@ -126,6 +156,21 @@ function handleDeleteTask(event){
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
 
+  const tasks = readProjectsFromStorage();
+
+  const taskId = ui.draggable[0].dataset.projectId;
+
+  const newStatus = event.target.id;
+
+  for (i of tasks) {
+    if (i.id === taskId) {
+      i.status = newStatus;
+    }
+  }
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  renderTaskList();
+
 }
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, 
@@ -138,8 +183,14 @@ $(document).ready(function () {
 
   $('#project-form').on('submit', handleAddTask);
 
+  $(".lane").droppable({
+    accept: '.draggable',
+    drop: handleDrop,
+  });
+
     $( "#taskDueDate" ).datepicker({
         changeMonth: true,
         changeYear: true
       });
+
 });
