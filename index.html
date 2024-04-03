@@ -27,6 +27,7 @@
 
     <!-- Todo: Create a modal with a form to add tasks -->
 
+    <!-- A Modal dialog (via Bootstrap) is used to pull the user's attention to the form within.  -->
     <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -34,24 +35,35 @@
             <h5 class="modal-title" id="formModalLabel">Add task</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
+
+          <!-- The form for the user's task inputs sits within the 'modal body' class. -->
+          <div class="modal-body container">
+
             <form id="project-form">
-              <div class="form-group">
-                <label for="taskTitle">Task Title</label>
-                <input class="form-control" type="text" id="taskTitle"></textarea>
-              </div>
-              <div class="form-group">
-                <label for="taskDueDate">Task Due Date</label>
-                <input class="form-control" type="text" id="taskDueDate"></textarea>
-              </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="taskTitle">Task Title</label>
+                      <input class="form-control" type="text" id="taskTitle"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="taskDueDate">Task Due Date</label>
+                      <input class="form-control" type="text" id="taskDueDate"></textarea>
+                    </div>
+                  </div>
+                </div>
+
               <div class="form-group">
                 <label for="taskDescription">Task Description</label>
                 <textarea class="form-control" id="taskDescription" rows="2"></textarea>
               </div>
             </form>
           </div>
-          <div class="modal-footer">
-            <button type="submit" form="project-form" class="btn btn-primary" data-bs-dismiss="modal">Add task</button>          
+          <!-- The submit button for the form within the modal dialog sits in the 'modal footer' class. -->
+          <div class="modal-footer justify-content-center">
+            <button type="submit" form="project-form" class="btn btn-success" data-bs-dismiss="modal">Add task</button>          
           </div>
         </div>
       </div>
@@ -98,6 +110,8 @@
   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
     integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/dayjs@1.8.21/plugin/isBetween.js"></script>
 
   <script src="./assets/js/script.js"></script>
 </body>

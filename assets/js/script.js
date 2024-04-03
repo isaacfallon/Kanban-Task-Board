@@ -2,17 +2,17 @@
 let taskList = JSON.parse(localStorage.getItem("tasks"));
 let nextId = JSON.parse(localStorage.getItem("nextId"));
 
-function readProjectsFromStorage() {
-  let projects = localStorage.getItem("tasks");
-  if (!projects) {
+function readTasksFromStorage() {
+  let tasks = localStorage.getItem("tasks");
+  if (!tasks) {
     return [];
   }
-  let projectsParsed = JSON.parse(projects);
-  return projectsParsed;
+  let tasksParsed = JSON.parse(tasks);
+  return tasksParsed;
 }
 
-function saveProjectsToStorage(projects) {
-  localStorage.setItem("tasks", JSON.stringify(projects));
+function saveTasksToStorage(tasks) {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 // Todo: create a function to generate a unique task id
@@ -59,8 +59,16 @@ function createTaskCard(task) {
     const taskDueDate = dayjs(task.dueDate, 'DD/MM/YYYY');
 
     let sevenDaysAway = now.add(7, 'day');
+    const isBetween = window.dayjs_plugin_isBetween;
+    dayjs.extend(isBetween);
 
-    if (now.isSame(taskDueDate, 'day')) {
+    // console.log(
+    //   "BETWEEN: ",
+    //   dayjs("2024-04-09").isBetween("2024-04-03", "2024-04-10", 'day', "[)")
+    //   dayjs(taskDueDate).isBetween(now, sevenDaysAway, 'day', "[)")
+    // );
+
+    if (dayjs(taskDueDate).isBetween(now, sevenDaysAway, 'day', "[)")) {
       taskCard.addClass('bg-warning text-white');
     } else if (now.isAfter(taskDueDate, 'day')) {
       taskCard.addClass('bg-danger text-white');
@@ -77,7 +85,7 @@ function createTaskCard(task) {
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
-  const tasks = readProjectsFromStorage();
+  const tasks = readTasksFromStorage();
 
   const todoList = $('#todo-cards');
   todoList.empty();
@@ -118,7 +126,7 @@ function renderTaskList() {
 function handleAddTask(event) {
   event.preventDefault();
 
-  const newProject = {
+  const newTask = {
     id: generateTaskId(),
     title: $('#taskTitle').val(),
     dueDate: $('#taskDueDate').val(),
@@ -126,10 +134,10 @@ function handleAddTask(event) {
     status: 'to-do',
   };
 
-  const projects = readProjectsFromStorage();
-  projects.push(newProject);
+  const tasks = readTasksFromStorage();
+  tasks.push(newTask);
 
-  saveProjectsToStorage(projects);
+  saveTasksToStorage(tasks);
 
   renderTaskList();
 
@@ -142,24 +150,22 @@ function handleAddTask(event) {
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event){
   const taskId = $(this).attr('data-project-id');
-  const tasks = readProjectsFromStorage();
+  const tasks = readTasksFromStorage();
 
   for (let i = 0; i < tasks.length; i++) {
     if (tasks[i].id == taskId) {
       tasks.splice([i], 1);
     }
   }
-  saveProjectsToStorage(tasks);
+  saveTasksToStorage(tasks);
   renderTaskList();
 }
 
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
 
-  const tasks = readProjectsFromStorage();
-
+  const tasks = readTasksFromStorage();
   const taskId = ui.draggable[0].dataset.projectId;
-
   const newStatus = event.target.id;
 
   for (i of tasks) {
