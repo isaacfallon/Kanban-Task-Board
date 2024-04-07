@@ -4,10 +4,15 @@
 
 This project is a project task board application built using Javascript. It serves as the week 5 challenge for The University of Sydney's Coding Bootcamp.
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+This project was built to help manage tasks in a 'kanban' style board. Completing this project solves the problem of not having a way to easily add, track and manage tasks in an easy way. This is achieved through reactive functionality such as allowing tasks to be dragged and dropped, colour coordination for each task depending on if the task is overdue or approaching the due date and the fact the tasks will remain in local storage. 
+
+I learned a lot by completing this project, but my main takeaway is understanding how powerful other Javascript libraries such as Bootstrap and jQuery can be (especially when used in unison). 
+
+### Screenshot of application showing how a user can add a task by pressing the 'add task' button.
+![Screenshot of application showing how a user can add a task by pressing the 'add task' button](/assets/images/5-challenge-task-board_adding-task.png).
+
+### Screenshot of application showing tasks added on board
+![Screenshot of application showing tasks added on board](/assets/images/5-challenge-task-board_tasks-added-on-board.png).
 
 ## Usage
 
@@ -19,7 +24,14 @@ Alternatively, you can also clone the repository and run the project locally. [R
 
 ## Credits
 
+Some small snippets of code were inspired by the mini-project-5 task board assigned to us alongside this challenge project. 
+The main part utilised from that codebase is the syntax for the task 'drop' functionality from lines 142 to 152. 
 
+### Screenshot of script.js file showing the drop functionality taken from mini-project-5
+
+![Screenshot of script.js file showing the drop functionality taken as inspiration from the mini-project-5 task board](/assets/images/5-challenge-task-board_drop-functionality-code.png)
+
+All credit for these snippets goes to the original programmers who set up the codebase for the coding bootcamp.  
 
 ## License
 
