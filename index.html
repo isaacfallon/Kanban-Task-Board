@@ -18,7 +18,8 @@
 <body>
   <header class="p-4 mb-4 text-center border-bottom border-5">
     <h1 class="display-3">Task Board</h1>
-    <p class="lead">A simple Kanban board for task management</p>
+    <p class="lead">A simple Kanban board for task management.</p>
+    <p class="lead">A red card is overdue. A yellow card is due within a week from today. A white card is due beyond a week from today (or if in the 'done' lane).</p>
   </header>
   <div class="container">
     <div class="text-center mb-5">
@@ -36,11 +37,11 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
-          <!-- The form for the user's task inputs sits within the 'modal body' class. -->
+          <!-- The form for the user's input sits within the 'modal body' class. -->
           <div class="modal-body container">
             <form id="project-form">
-              <!-- Using a 'row' bootstrap class around the task title and due date entry fields allows them 
-              to sit on the same line when they also have a 'col-6' class within. -->
+              <!-- Using a 'row' class around the task title and due date input 
+                (which each also have a 'col-6' class allows them to sit on the same line. -->
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group">
@@ -62,6 +63,7 @@
               </div>
             </form>
           </div>
+          
           <!-- The submit button for the form within the modal dialog sits in the 'modal footer' class. -->
           <div class="modal-footer justify-content-center">
             <button type="submit" form="project-form" class="btn btn-success" data-bs-dismiss="modal">Add task</button>          
