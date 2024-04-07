@@ -2,6 +2,9 @@
 let taskList = JSON.parse(localStorage.getItem("tasks"));
 let nextId = JSON.parse(localStorage.getItem("nextId"));
 
+// A function is created to pull existing tasks from local storage. 
+// If there are no tasks, return an empty array we can then add to later in the code.  
+// Otherwise, the parsed tasks are returned (which we can then also add to later). 
 function readTasksFromStorage() {
   let tasks = localStorage.getItem("tasks");
   if (!tasks) {
@@ -11,6 +14,7 @@ function readTasksFromStorage() {
   return tasksParsed;
 }
 
+// A function to save tasks to local storage is set. We can call this when needed throughout the file. 
 function saveTasksToStorage(tasks) {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
@@ -24,15 +28,15 @@ function generateTaskId() {
 
 // Todo: create a function to create a task card
 function createTaskCard(task) {
-  //The taskCard is created by creating it as a 'div' HTML element.
+  //The taskCard is made by creating a HTML 'div' element we can then append child elements to later.
   const taskCard = $('<div>');
-// We then attach some bootstrap card classes as well as the 'draggable' class
-  // to allow it to be draggable when we call the jquery draggable functionality later on. 
+  // We then attach some bootstrap card classes as well as the 'draggable' class
+  // to allow it to be moved when we call the jquery draggable functionality later on. 
   taskCard.addClass('card project-card draggable my-3');
-    // We also provide the card with its own 'data-project-id' attribute which we set later on.
+  // We also provide the card with its own 'data-project-id' attribute which we set later on.
   taskCard.attr('data-project-id', task.id);
 
-   // A similar 'div' element is created for the header and assigned to the input title of the task. 
+  // A similar 'div' element is created for the header and assigned to the input title of the task. 
   const cardHeader = $('<div>');
   cardHeader.addClass('card-header h4');
   cardHeader.text(task.title);
@@ -54,8 +58,8 @@ function createTaskCard(task) {
   // A 'button' element is also added so we can remove tasks with the handleDeleteTask function further down. 
   const cardDeleteButton = $('<button>');
   cardDeleteButton.addClass('btn btn-danger delete');
-  cardDeleteButton.text('delete');
-   // We set an id for the button we can later compare to the card button to ensure the correct card is deleted. 
+  cardDeleteButton.text('Delete');
+  // We set an id for the button we can later compare to the card button to ensure the correct card is deleted. 
   cardDeleteButton.attr('data-project-id', task.id);
 
   // The due date, description and delete buttons are appended to the card body. 
@@ -64,18 +68,18 @@ function createTaskCard(task) {
   cardBody.append(cardDeleteButton);
 
   // The card header and body is then appended to the main task card. 
-  // This creates the overall design of the card. 
+  // This creates the overall design of the task card. 
   taskCard.append(cardHeader);
   taskCard.append(cardBody);
 
-  // An if-statement is used to only with the condition that the task's dueDate exists and the status is not 'done'.
+  // An if-statement is used only with the condition that the task's dueDate exists and the status is not 'done'.
   if (task.dueDate && task.status !== 'done') {
     // We assign a variable 'now' to the call of 'dayjs' with no parameters to set it to the current date and time. 
     const now = dayjs();
     // We assign a variable 'taskDueDate' to the task's due date in the format of 'DD/MM/YYYY'.
     const taskDueDate = dayjs(task.dueDate, 'DD/MM/YYYY');
 
-    // We assign a variable 'sevenDaysAway' to a day that is seven days from today using the 'now' variable and adding 7 days. 
+    // We assign a variable 'sevenDaysAway' to a day that is seven days from today using the 'now' variable and using the add() method.
     // PLEASE NOTE: This is optional but I prefer the functionality it allows below. 
     let sevenDaysAway = now.add(7, 'day');
      // We then assign a variable 'isBetween' to the isBetween js plugin extension. 
@@ -86,9 +90,9 @@ function createTaskCard(task) {
     // The following if and else-if statements dictate the colour of the card based on how close the due date is to today. 
     if (dayjs(taskDueDate).isBetween(now, sevenDaysAway, 'day', "[)")) {
       // If the task's due date falls between now and seven days from now 
-      // (as in - the due date is approaching), the card's colour is set to yellow. 
+      // (to indicate the due date is approaching), the card's colour is set to yellow. 
       taskCard.addClass('bg-warning text-white');
-      // Else, if the current date is after the 'due date' (as in - the project is overdue),
+      // Otherwise, if the current date is after the 'due date' (to indicate the project is overdue),
       // then the card's colour is set to red. We also add a light-border to the existing red delete button so it is visible.  
     } else if (now.isAfter(taskDueDate, 'day')) {
       taskCard.addClass('bg-danger text-white');
@@ -118,7 +122,7 @@ function renderTaskList() {
   doneList.empty();
 
   // We then loop through the taskList, creating a card for each lane depending on it's status 
-  // (by appending the card to the lane). 
+  // (by appending the card to the correct lane). 
   for (let i of tasks) {
     const newCard = createTaskCard(i);
     if (i.status === 'to-do') {
@@ -135,7 +139,7 @@ function renderTaskList() {
     zIndex: 100,
 
     // I'm not 100% certain on how the code below works as I sourced it from the mini-project task -
-    // (see my README.MD file for specifics here).
+    // (see my README.MD file for specifics).
 
     // From what I understand, the following code creates a clone of the card so the user can 
     // visibly see how the card is being moved between lanes. 
@@ -153,7 +157,7 @@ function renderTaskList() {
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event) {
-  // We start by preventing the browser's default bevaviour overwriting our attempt to add a task. 
+  // We start by preventing the browser's default behaviour which would normally stop our attempt to add a task. 
   event.preventDefault();
 
   // An object is created to contain the user input for each task. 

@@ -2,17 +2,17 @@
 
 ## Description
 
-This project is a project task board application built using Javascript. It serves as the week 5 challenge for The University of Sydney's Coding Bootcamp.
+This project is a task board application built using Javascript. It serves as the week 5 challenge for The University of Sydney's Coding Bootcamp.
 
-This project was built to help manage tasks in a 'kanban' style board. Completing this project solves the problem of not having a way to easily add, track and manage tasks in an easy way. This is achieved through reactive functionality such as allowing tasks to be dragged and dropped, colour coordination for each task depending on if the task is overdue or approaching the due date and the fact the tasks will remain in local storage. 
+This project was built to help manage individual projects or tasks in a 'kanban' style board. Completing this project solves the problem of not having a way to easily add, track and manage tasks in a digitally convenient way. This is achieved through reactive functionality by allowing tasks to be dragged and dropped into lanes representing their status, colour changes for each task depending on its due date and the fact the tasks will remain in local storage. 
 
-I learned a lot by completing this project, but my main takeaway is understanding how powerful other Javascript libraries such as Bootstrap and jQuery can be (especially when used in unison). 
+My biggest takeaway from completing this project was expanding my understanding of how to use the Javascript libraries of Bootstrap, jQuery and Day.js to greater effect. Digging into the documentation and utilising them in unison taught me that these libraries can not only reduce development time, but be powerful tools in their own right. 
 
-### Screenshot of application showing how a user can add a task by pressing the 'add task' button.
-![Screenshot of application showing how a user can add a task by pressing the 'add task' button](/assets/images/5-challenge-task-board_adding-task.png).
+### Screenshot of application showing how a user can add a task in a modal dialog (following pressing the 'add task' button):
+![Screenshot of application showing how a user can add a task by pressing the 'add task' button](/assets/images/5-challenge-task-board_adding-task.png)
 
-### Screenshot of application showing tasks added on board
-![Screenshot of application showing tasks added on board](/assets/images/5-challenge-task-board_tasks-added-on-board.png).
+### Screenshot of application showing tasks added to the board after being dragged to different lanes:
+![Screenshot of application showing tasks added on board](/assets/images/5-challenge-task-board_tasks-added-on-board.png)
 
 ## Usage
 
@@ -24,14 +24,14 @@ Alternatively, you can also clone the repository and run the project locally. [R
 
 ## Credits
 
-Some small snippets of code were inspired by the mini-project-5 task board assigned to us alongside this challenge project. 
-The main part utilised from that codebase is the syntax for the task 'drop' functionality from lines 142 to 152. 
+Some small snippets of code were inspired by the 'mini-project-5 task board' assigned to us alongside this challenge project. 
+The main part utilised from that codebase is the syntax for the 'drop' functionality found in lines 142 to 152 in this project's script.js file. 
 
-### Screenshot of script.js file showing the drop functionality taken from mini-project-5
+### Screenshot of script.js file showing the drop functionality utilised from mini-project-5:
 
 ![Screenshot of script.js file showing the drop functionality taken as inspiration from the mini-project-5 task board](/assets/images/5-challenge-task-board_drop-functionality-code.png)
 
-All credit for these snippets goes to the original programmers who set up the codebase for the coding bootcamp.  
+All credit for these lines of code goes to the original programmers who set up the codebase for the bootcamp's mini-project-5 task board. 
 
 ## License
 
