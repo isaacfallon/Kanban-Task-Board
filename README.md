@@ -1,8 +1,8 @@
-# 5-Challenge-Task-Board
+# Kanban-Task-Board
 
 ## Description
 
-This project is a task board application built using Javascript. It serves as the week 5 challenge for The University of Sydney's Coding Bootcamp.
+This project is a task board application built using Javascript, Bootstrap, jQuery and Day.js
 
 This project was built to help manage individual projects or tasks in a 'kanban' style board. Completing this project solves the problem of not having a way to easily add, track and manage tasks in a digitally convenient way. This is achieved through reactive functionality by allowing tasks to be dragged and dropped into lanes representing their status, colour changes for each task depending on its due date and the fact the tasks will remain in local storage. 
 
